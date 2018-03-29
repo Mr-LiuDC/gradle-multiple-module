@@ -1,0 +1,65 @@
+buildscript {
+    ext {
+        springBootVersion = '1.5.10.RELEASE'
+        springIOVersion = 'Brussels-SR3'
+        springCloudVersion = 'Dalston.SR1'
+    }
+
+    repositories {
+        mavenCentral()
+        maven { url "https://plugins.gradle.org/m2/" }
+        jcenter()
+    }
+    dependencies {
+        classpath "com.netflix.nebula:gradle-extra-configurations-plugin:3.3.0"
+        classpath 'io.spring.gradle:dependency-management-plugin:1.0.0.RELEASE'
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+plugins {
+    id "io.spring.dependency-management" version "1.0.0.RELEASE"
+    id "nebula.provided-base" version "3.3.0"
+}
+
+apply plugin: 'java'
+apply plugin: 'spring-boot'
+apply plugin: "nebula.provided-base"
+apply plugin: 'io.spring.dependency-management'
+
+allprojects {
+    group 'cn.alittler'
+    version '1.0.0'
+
+    repositories {
+        mavenCentral()
+    }
+}
+
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'idea'
+    apply plugin: 'nebula.provided-base'
+    apply plugin: 'io.spring.dependency-management'
+
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+
+    dependencyManagement {
+        imports {
+            mavenBom "io.spring.platform:platform-bom:${springIOVersion}"
+            mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+        }
+    }
+
+    repositories {
+        mavenLocal()
+        maven { url 'http://maven.aliyun.com/nexus/content/groups/public' }
+        mavenCentral()
+        jcenter()
+    }
+
+    dependencies {
+
+    }
+}

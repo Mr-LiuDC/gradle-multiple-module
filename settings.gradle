@@ -1,0 +1,6 @@
+rootProject.name = 'application'
+include 'entity'
+include 'dto'
+include 'repository'
+include 'service'
+include 'web'

@@ -1,0 +1,7 @@
+dependencies {
+    runtime('com.h2database:h2')
+    runtime('mysql:mysql-connector-java')
+    runtime('com.microsoft.sqlserver:mssql-jdbc')
+    compileOnly('org.projectlombok:lombok')
+    compile('org.springframework.boot:spring-boot-starter-data-jpa')
+}
