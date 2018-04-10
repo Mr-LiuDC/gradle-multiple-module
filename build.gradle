@@ -7,11 +7,9 @@ buildscript {
 
     repositories {
         mavenCentral()
-        maven { url "https://plugins.gradle.org/m2/" }
         jcenter()
     }
     dependencies {
-        classpath "com.netflix.nebula:gradle-extra-configurations-plugin:3.3.0"
         classpath 'io.spring.gradle:dependency-management-plugin:1.0.0.RELEASE'
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
     }
@@ -19,12 +17,12 @@ buildscript {
 
 plugins {
     id "io.spring.dependency-management" version "1.0.0.RELEASE"
-    id "nebula.provided-base" version "3.3.0"
 }
 
 apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'eclipse'
 apply plugin: 'spring-boot'
-apply plugin: "nebula.provided-base"
 apply plugin: 'io.spring.dependency-management'
 
 allprojects {
@@ -39,7 +37,7 @@ allprojects {
 subprojects {
     apply plugin: 'java'
     apply plugin: 'idea'
-    apply plugin: 'nebula.provided-base'
+    apply plugin: 'eclipse'
     apply plugin: 'io.spring.dependency-management'
 
     sourceCompatibility = 1.8

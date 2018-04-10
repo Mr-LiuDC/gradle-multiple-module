@@ -1,3 +1,4 @@
 dependencies {
     compile project(':entity')
+    compileOnly('org.projectlombok:lombok')
 }

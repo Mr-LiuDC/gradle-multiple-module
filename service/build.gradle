@@ -1,3 +1,5 @@
 dependencies {
+	compile project(':utils')
+	compile project(':dto')
     compile project(':repository')
 }
