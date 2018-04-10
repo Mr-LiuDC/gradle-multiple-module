@@ -1,3 +1,5 @@
+description('数据传输模块DTO')
+
 dependencies {
     compile project(':entity')
 }

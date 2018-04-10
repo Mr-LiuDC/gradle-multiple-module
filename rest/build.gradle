@@ -1,6 +1,6 @@
 apply plugin: 'spring-boot'
 
-description('Web层')
+description('Rest接口')
 
 dependencies {
     compile project(':common')

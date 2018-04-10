@@ -1,0 +1,6 @@
+description('一般支持模块Common')
+
+dependencies {
+    compile('org.apache.commons:commons-lang3')
+    compile('org.projectlombok:lombok')
+}
