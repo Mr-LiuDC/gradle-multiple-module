@@ -1,0 +1,6 @@
+dependencies {
+    compile group: 'org.apache.commons', name: 'commons-lang3'
+    compile group: 'com.google.guava', name: 'guava'
+    testCompile group: 'junit', name: 'junit'
+    compileOnly('org.projectlombok:lombok')
+}
