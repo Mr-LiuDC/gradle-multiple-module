@@ -24,7 +24,7 @@ public interface UpdateDemoService {
      * @param id
      * @return
      */
-    void deleteDemoById(Long id);
+    void deleteDemoById(String id);
 
     /**
      * 根据ID更新对象

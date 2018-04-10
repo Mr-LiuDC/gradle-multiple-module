@@ -27,5 +27,5 @@ public interface DemoQueryService {
      * @param pageable
      * @return
      */
-    Page<DemoEntity> getDemoList(Pageable pageable);
+    Page<DemoDto> getDemoList(Pageable pageable);
 }
