@@ -1,8 +1,10 @@
 rootProject.name = 'application'
+include 'common'
 include 'entity'
 include 'dto'
 include 'repository'
 include 'service'
 include 'web'
+include 'rest'
 include 'utils'
 

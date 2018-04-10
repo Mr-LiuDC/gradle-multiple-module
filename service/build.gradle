@@ -1,3 +1,5 @@
+description('服务层Service')
+
 dependencies {
 	compile project(':utils')
 	compile project(':dto')
