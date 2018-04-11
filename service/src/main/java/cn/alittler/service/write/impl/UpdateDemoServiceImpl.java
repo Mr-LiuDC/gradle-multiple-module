@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.text.ParseException;
+import java.util.Date;
 
 /**
  * UpdateDemoServiceImpl
@@ -28,9 +29,14 @@ public class UpdateDemoServiceImpl implements UpdateDemoService {
 
     @Override
     public DemoDto saveDemo(String name) {
+        DemoDto demoDto = new DemoDto();
         DemoEntity demoEntity = new DemoEntity();
         demoEntity.setName(name);
-        return (DemoDto) demoRepository.save(demoEntity);
+        demoEntity.setCreateTime(new Date());
+        demoEntity.setModifiedTime(new Date());
+        demoRepository.save(demoEntity);
+        BeanUtils.copyProperties(demoEntity, demoDto);
+        return demoDto;
     }
 
     @Override
@@ -51,6 +57,7 @@ public class UpdateDemoServiceImpl implements UpdateDemoService {
             } catch (ParseException e) {
                 log.warn("updateDemoById() returned: ", e.getMessage());
             }
+            demoRepository.save(demoEntity);
             BeanUtils.copyProperties(demoRepository.save(demoEntity), demoDto);
             return demoDto;
         }

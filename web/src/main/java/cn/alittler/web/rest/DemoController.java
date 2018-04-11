@@ -31,7 +31,7 @@ public class DemoController {
     @PostMapping
     public DemoDto saveDemo(@Valid @RequestParam String name) {
         DemoDto demoDto = updateDemoService.saveDemo(name);
-        log.info("saveDemo() {0}", demoDto);
+        log.info("saveDemo() {0}", demoDto.toString());
         return demoDto;
     }
 
