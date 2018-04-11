@@ -19,7 +19,7 @@ public interface DemoQueryService {
      * @param id
      * @return
      */
-    DemoDto getDemoById(Long id);
+    DemoDto getDemoById(String id);
 
     /**
      * 分页查询对象列表

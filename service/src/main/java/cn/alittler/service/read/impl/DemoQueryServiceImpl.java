@@ -4,14 +4,13 @@ import cn.alittler.dto.DemoDto;
 import cn.alittler.entity.DemoEntity;
 import cn.alittler.repository.DemoRepository;
 import cn.alittler.service.read.DemoQueryService;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
-
-import java.util.List;
+import org.springframework.stereotype.Service;
 
 /**
  * DemoQueryServiceImpl
@@ -19,16 +18,19 @@ import java.util.List;
  * @author LiuDeCai
  * @date 2018/04/10
  */
+@Service("demoQueryServiceImpl")
 public class DemoQueryServiceImpl implements DemoQueryService {
 
     @Autowired
     private DemoRepository demoRepository;
 
     @Override
-    public DemoDto getDemoById(Long id) {
-        DemoEntity demoEntity = demoRepository.getOne(id);
+    public DemoDto getDemoById(String id) {
         DemoDto demoDto = new DemoDto();
-        BeanUtils.copyProperties(demoEntity, demoDto);
+        if (!StringUtils.isBlank(id)) {
+            DemoEntity demoEntity = demoRepository.getOne(Long.parseLong(id));
+            BeanUtils.copyProperties(demoEntity, demoDto);
+        }
         return demoDto;
     }
 

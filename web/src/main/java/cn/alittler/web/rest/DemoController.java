@@ -2,13 +2,15 @@ package cn.alittler.web.rest;
 
 import cn.alittler.dto.DemoDto;
 import cn.alittler.service.read.DemoQueryService;
-import cn.alittler.service.read.impl.DemoQueryServiceImpl;
 import cn.alittler.service.write.UpdateDemoService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 /**
  * DemoController
@@ -26,18 +28,40 @@ public class DemoController {
     @Autowired
     private UpdateDemoService updateDemoService;
 
-    public DemoDto saveDemo(String name) {
-        return updateDemoService.saveDemo(name);
+    @PostMapping
+    public DemoDto saveDemo(@Valid @RequestParam String name) {
+        DemoDto demoDto = updateDemoService.saveDemo(name);
+        log.info("saveDemo() {0}", demoDto);
+        return demoDto;
     }
 
-    public ResponseEntity deleteDemo(String id) {
+    @GetMapping("{id}")
+    public ResponseEntity deleteDemo(@Valid @PathVariable String id) {
         updateDemoService.deleteDemoById(id);
+        log.info("deleteDemo() by {0}", id);
         return ResponseEntity.ok("删除成功");
     }
 
-    public ResponseEntity updateDemo(String id, String name, String modifiedTime) {
-        return ResponseEntity.ok(updateDemoService.updateDemoById(id, name, modifiedTime));
+    @PutMapping
+    public ResponseEntity updateDemo(@RequestParam String id, @RequestParam String name, @RequestParam String modifiedTime) {
+        DemoDto demoDto = updateDemoService.updateDemoById(id, name, modifiedTime);
+        log.info("updateDemo() {0}", demoDto);
+        return ResponseEntity.ok(demoDto);
     }
 
+    @DeleteMapping("{id}")
+    public ResponseEntity getDemo(@RequestParam String id) {
+        DemoDto demoDto = demoQueryService.getDemoById(id);
+        log.info("getDemo() by {0}", id);
+        return ResponseEntity.ok(demoDto);
+    }
+
+    @GetMapping()
+    public ResponseEntity getDemoList(Integer pageNo, Integer pageSize) {
+        PageRequest pageable = new PageRequest(pageNo, pageSize);
+        Page<DemoDto> demoDtoPage = demoQueryService.getDemoList(pageable);
+        log.info("getDemoList() {0}", demoDtoPage);
+        return ResponseEntity.ok(demoDtoPage);
+    }
 
 }

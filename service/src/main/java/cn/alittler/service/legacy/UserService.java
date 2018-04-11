@@ -1,4 +1,4 @@
-package cn.alittler.service;
+package cn.alittler.service.legacy;
 
 import cn.alittler.dto.UserDto;
 import cn.alittler.entity.User;

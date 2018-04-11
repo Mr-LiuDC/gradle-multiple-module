@@ -1,12 +1,9 @@
 package cn.alittler.service.write.impl;
 
-import ch.qos.logback.classic.Level;
 import cn.alittler.dto.DemoDto;
 import cn.alittler.entity.DemoEntity;
 import cn.alittler.repository.DemoRepository;
 import cn.alittler.service.write.UpdateDemoService;
-import lombok.extern.java.Log;
-import lombok.extern.log4j.Log4j2;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateUtils;
@@ -23,7 +20,7 @@ import java.text.ParseException;
  * @date 2018/04/10
  */
 @Slf4j
-@Service
+@Service("updateDemoServiceImpl")
 public class UpdateDemoServiceImpl implements UpdateDemoService {
 
     @Autowired
