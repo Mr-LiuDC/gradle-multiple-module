@@ -1,6 +1,7 @@
 package cn.alittler.entity;
 
 import lombok.Data;
+import lombok.ToString;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,6 +18,7 @@ import java.util.Date;
  */
 @Data
 @Entity
+@ToString
 public class DemoEntity implements Serializable {
 
     @Id

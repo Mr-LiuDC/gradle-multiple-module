@@ -31,28 +31,28 @@ public class DemoController {
     @PostMapping
     public DemoDto saveDemo(@Valid @RequestParam String name) {
         DemoDto demoDto = updateDemoService.saveDemo(name);
-        log.info("saveDemo() {0}", demoDto.toString());
+        log.info("saveDemo() {}", demoDto.toString());
         return demoDto;
     }
 
     @GetMapping("{id}")
     public ResponseEntity deleteDemo(@Valid @PathVariable String id) {
         updateDemoService.deleteDemoById(id);
-        log.info("deleteDemo() by {0}", id);
+        log.info("deleteDemo() by {}", id);
         return ResponseEntity.ok("删除成功");
     }
 
     @PutMapping
     public ResponseEntity updateDemo(@RequestParam String id, @RequestParam String name, @RequestParam String modifiedTime) {
         DemoDto demoDto = updateDemoService.updateDemoById(id, name, modifiedTime);
-        log.info("updateDemo() {0}", demoDto);
+        log.info("updateDemo() {}", demoDto);
         return ResponseEntity.ok(demoDto);
     }
 
     @DeleteMapping("{id}")
     public ResponseEntity getDemo(@RequestParam String id) {
         DemoDto demoDto = demoQueryService.getDemoById(id);
-        log.info("getDemo() by {0}", id);
+        log.info("getDemo() by {}", id);
         return ResponseEntity.ok(demoDto);
     }
 
@@ -60,7 +60,7 @@ public class DemoController {
     public ResponseEntity getDemoList(Integer pageNo, Integer pageSize) {
         PageRequest pageable = new PageRequest(pageNo, pageSize);
         Page<DemoDto> demoDtoPage = demoQueryService.getDemoList(pageable);
-        log.info("getDemoList() {0}", demoDtoPage);
+        log.info("getDemoList() {}", demoDtoPage);
         return ResponseEntity.ok(demoDtoPage);
     }
 
