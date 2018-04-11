@@ -34,5 +34,5 @@ public interface UpdateDemoService {
      * @param modifiedTime
      * @return
      */
-    DemoDto updateDemoById(Long id, String name, String modifiedTime);
+    DemoDto updateDemoById(String id, String name, String modifiedTime);
 }

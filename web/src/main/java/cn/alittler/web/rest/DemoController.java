@@ -35,5 +35,9 @@ public class DemoController {
         return ResponseEntity.ok("删除成功");
     }
 
+    public ResponseEntity updateDemo(String id, String name, String modifiedTime) {
+        return ResponseEntity.ok(updateDemoService.updateDemoById(id, name, modifiedTime));
+    }
+
 
 }

@@ -38,22 +38,25 @@ public class UpdateDemoServiceImpl implements UpdateDemoService {
 
     @Override
     public void deleteDemoById(String id) {
-        if (StringUtils.isBlank(id)) {
+        if (!StringUtils.isBlank(id)) {
             demoRepository.delete(Long.parseLong(id));
         }
     }
 
     @Override
-    public DemoDto updateDemoById(Long id, String name, String modifiedTime) {
+    public DemoDto updateDemoById(String id, String name, String modifiedTime) {
         DemoDto demoDto = new DemoDto();
-        DemoEntity demoEntity = demoRepository.findOne(id);
-        demoEntity.setName(name);
-        try {
-            demoEntity.setCreateTime(DateUtils.parseDate(modifiedTime, "yyyy-MM-dd HH:mm:ss"));
-        } catch (ParseException e) {
-            log.warn("updateDemoById() returned: ", e.getMessage());
+        if (!StringUtils.isBlank(id)) {
+            DemoEntity demoEntity = demoRepository.findOne(Long.parseLong(id));
+            demoEntity.setName(name);
+            try {
+                demoEntity.setCreateTime(DateUtils.parseDate(modifiedTime, "yyyy-MM-dd HH:mm:ss"));
+            } catch (ParseException e) {
+                log.warn("updateDemoById() returned: ", e.getMessage());
+            }
+            BeanUtils.copyProperties(demoRepository.save(demoEntity), demoDto);
+            return demoDto;
         }
-        BeanUtils.copyProperties(demoRepository.save(demoEntity), demoDto);
         return demoDto;
     }
 
