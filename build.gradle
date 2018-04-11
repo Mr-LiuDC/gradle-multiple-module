@@ -58,6 +58,6 @@ subprojects {
     }
 
     dependencies {
-        runtime('org.springframework.boot:spring-boot-devtools')
+        // runtime('org.springframework.boot:spring-boot-devtools')
     }
 }
