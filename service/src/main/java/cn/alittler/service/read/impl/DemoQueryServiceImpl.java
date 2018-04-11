@@ -18,7 +18,7 @@ import org.springframework.stereotype.Service;
  * @author LiuDeCai
  * @date 2018/04/10
  */
-@Service("demoQueryServiceImpl")
+@Service
 public class DemoQueryServiceImpl implements DemoQueryService {
 
     @Autowired

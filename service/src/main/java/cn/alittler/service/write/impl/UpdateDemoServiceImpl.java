@@ -20,7 +20,7 @@ import java.text.ParseException;
  * @date 2018/04/10
  */
 @Slf4j
-@Service("updateDemoServiceImpl")
+@Service
 public class UpdateDemoServiceImpl implements UpdateDemoService {
 
     @Autowired
