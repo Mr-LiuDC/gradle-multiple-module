@@ -4,14 +4,13 @@ buildscript {
         springIOVersion = 'Brussels-SR3'
         springCloudVersion = 'Dalston.SR1'
     }
-
     repositories {
         mavenCentral()
         jcenter()
     }
     dependencies {
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}"
         classpath 'io.spring.gradle:dependency-management-plugin:1.0.0.RELEASE'
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
     }
 }
 
@@ -22,8 +21,6 @@ plugins {
 apply plugin: 'java'
 apply plugin: 'idea'
 apply plugin: 'eclipse'
-apply plugin: 'org.springframework.boot'
-apply plugin: 'io.spring.dependency-management'
 
 allprojects {
     group 'cn.alittler'
@@ -48,6 +45,7 @@ subprojects {
             mavenBom "io.spring.platform:platform-bom:${springIOVersion}"
             mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
         }
+
     }
 
     repositories {
